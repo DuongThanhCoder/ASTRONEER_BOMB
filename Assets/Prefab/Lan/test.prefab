@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4516486104464455397
+--- !u!1 &6756724362353081293
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4464153705190845287}
-  - component: {fileID: 392711800067919191}
-  - component: {fileID: 3428699917659334425}
+  - component: {fileID: 7823770291490939487}
+  - component: {fileID: 4361370560091136292}
+  - component: {fileID: 5195699434747188957}
   m_Layer: 0
-  m_Name: LobbyManager
+  m_Name: test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4464153705190845287
+--- !u!4 &7823770291490939487
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4516486104464455397}
+  m_GameObject: {fileID: 6756724362353081293}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 492.7858, y: 263.19662, z: -1.0520506}
+  m_LocalPosition: {x: 501.1214, y: 663.2461, z: -7.1507425}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &392711800067919191
+--- !u!114 &4361370560091136292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4516486104464455397}
+  m_GameObject: {fileID: 6756724362353081293}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2347499049
+  GlobalObjectIdHash: 3148648580
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -53,21 +53,16 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &3428699917659334425
+--- !u!114 &5195699434747188957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4516486104464455397}
+  m_GameObject: {fileID: 6756724362353081293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04a0b2801f840134889c365fef472e0b, type: 3}
+  m_Script: {fileID: 11500000, guid: e4ddf295f41c2154d98641064cc7a93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueplayer: {fileID: 3784403915279076152, guid: d477efb964abc7041b8e891c48cd832f, type: 3}
-  greenplayer: {fileID: 8667782775784435909, guid: 0d26bfcf3aa86934188772d81508b01a, type: 3}
-  redplayer: {fileID: 1862631223022509121, guid: ca4996340b8a48d4786df869776ebb1b, type: 3}
-  yellowplayer: {fileID: 2798644818380410609, guid: 220058aebea73d44d9e229c24ad45959, type: 3}
-  kiemxoatprefab: {fileID: 2222846523016413152, guid: e9412117e64c7994ca7e309554948c1e, type: 3}
-  save: {fileID: 11400000, guid: b4ddb81f8f979aa44ae13ff49345514f, type: 2}
+  x: 0

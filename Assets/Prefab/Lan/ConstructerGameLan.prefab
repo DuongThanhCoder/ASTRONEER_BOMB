@@ -73,3 +73,4 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   player3: {fileID: 0}
+  save: {fileID: 11400000, guid: b4ddb81f8f979aa44ae13ff49345514f, type: 2}

@@ -52,7 +52,7 @@ public class BombLanController : NetworkBehaviour
         }
         if (soluongconlai > 0 && gameObject.GetComponent<PlayerLanController>().vukhi == 0 && Input.GetKeyDown(KeyCode.F)&&trangthai)
         {
-            if(IsHost)
+            if (IsHost)
             {
                 StartCoroutine(Datbom());
             }
@@ -60,6 +60,7 @@ public class BombLanController : NetworkBehaviour
             {
                 goidatbomServerRpc();
             }
+            //requestDatBomServerRpc();
         }
 
     }
@@ -75,14 +76,14 @@ public class BombLanController : NetworkBehaviour
 
             vitridatbom = bomb.transform.position;
             vitridatbom.y += 0.44f;
+            callNoClientRpc(vitridatbom, bankinhno);
             GameObject explosion = Instantiate(explosionprefab, vitridatbom, Quaternion.identity);
-            explosion.GetComponent<NetworkObject>().Spawn();
+            //explosion.GetComponent<NetworkObject>().Spawn();
             Debug.Log("Checkpoint1");
-            Explose(vitridatbom + Vector2.up, Vector2.up, bankinhno);
-            Explose(vitridatbom + Vector2.down, Vector2.down, bankinhno);
-            Explose(vitridatbom + Vector2.left, Vector2.left, bankinhno);
-            Explose(vitridatbom + Vector2.right, Vector2.right, bankinhno);
-
+            //Explose(vitridatbom + Vector2.up, Vector2.up, bankinhno);
+            //Explose(vitridatbom + Vector2.down, Vector2.down, bankinhno);
+            //Explose(vitridatbom + Vector2.left, Vector2.left, bankinhno);
+            //Explose(vitridatbom + Vector2.right, Vector2.right, bankinhno);
             Destroy(explosion, 0.6f);
             Debug.Log("CheckpointNo");
             Destroy(bomb);
@@ -100,12 +101,12 @@ public class BombLanController : NetworkBehaviour
         {
             if (Physics2D.OverlapBox(new Vector2(vitrino.x,vitrino.y-0.6f), Vector2.one / 10f, 0f, ExploseMask))
             {
-                //xoabobox(vitrino-saisovuno);
-                goixoaboxClientRpc(vitrino - saisovuno);
+                xoabobox(vitrino-saisovuno);
+                //goixoaboxClientRpc(vitrino - saisovuno);
                 return;
             }
             GameObject explosion = Instantiate(explosionprefab, vitrino, Quaternion.identity);
-            explosion.GetComponent<NetworkObject>().Spawn();
+            //explosion.GetComponent<NetworkObject>().Spawn();
             Destroy(explosion, 0.6f);
             vitrino += huongno;
         }
@@ -119,11 +120,11 @@ public class BombLanController : NetworkBehaviour
 
         if(tile != null)
         {
-            if (IsHost)
-            {
+            //if (IsHost)
+            //{
                 BoxLan boxobj = Instantiate(box, vitrihop + saisobox, Quaternion.identity);
-                boxobj.GetComponent<NetworkObject>().Spawn();
-            }
+                //boxobj.GetComponent<NetworkObject>().Spawn();
+            //}
             tilemapphaduoc.SetTile(cell, null);
         }
         else
@@ -154,4 +155,33 @@ public class BombLanController : NetworkBehaviour
     {
         xoabobox(vitri);
     }
+
+    //[ServerRpc(RequireOwnership = false)]
+    //public void requestNoServerRpc()
+    //{
+    //    StartCoroutine(Datbom());
+    //    callNoClientRpc();
+    //}
+    [ClientRpc]
+    public void callNoClientRpc(Vector2 vitridatbom,int bankinhno)
+    {
+        GameObject explosion = Instantiate(explosionprefab, vitridatbom, Quaternion.identity);
+        Explose(vitridatbom + Vector2.up, Vector2.up, bankinhno);
+        Explose(vitridatbom + Vector2.down, Vector2.down, bankinhno);
+        Explose(vitridatbom + Vector2.left, Vector2.left, bankinhno);
+        Explose(vitridatbom + Vector2.right, Vector2.right, bankinhno);
+        Destroy(explosion, 0.6f);
+    }
+    //[ServerRpc(RequireOwnership = false)]
+    //public void requestDatBomServerRpc()
+    //{
+    //    StartCoroutine(Datbom());
+    //    callDatBomClientRpc();
+    //}
+    //[ClientRpc]
+    //public void callDatBomClientRpc()
+    //{
+    //    StartCoroutine(Datbom());
+    //}
+
 }

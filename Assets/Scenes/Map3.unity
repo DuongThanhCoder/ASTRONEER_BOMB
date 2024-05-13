@@ -567,8 +567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.999975, y: 230.99998}
-  m_SizeDelta: {x: 758.5314, y: 550.202}
+  m_AnchoredPosition: {x: -1.9999771, y: 291}
+  m_SizeDelta: {x: 585.5042, y: 424.6964}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &785189390
 GameObject:
@@ -1921,8 +1921,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.999975, y: 230.99998}
-  m_SizeDelta: {x: 758.5314, y: 550.202}
+  m_AnchoredPosition: {x: -1.9999771, y: 291}
+  m_SizeDelta: {x: 585.5042, y: 424.6964}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &895174257
 GameObject:
@@ -2588,12 +2588,12 @@ MonoBehaviour:
   victoryText: {fileID: 1537317868}
   panel: {fileID: 1932032790}
   PlayAgain: {fileID: 1656851132}
-  map: {fileID: 0}
+  map: {fileID: 1064594494}
   bluewin: {fileID: 1381982145}
   greenwin: {fileID: 750561919}
   redwin: {fileID: 1960151113}
   yellowwin: {fileID: 861956562}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 904496915}
   chienthang: {fileID: 8300000, guid: f793fb63f66e5ac499da4ebd74d7f3f7, type: 3}
 --- !u!114 &1081597270
 MonoBehaviour:
@@ -2895,8 +2895,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 231}
-  m_SizeDelta: {x: 758.5314, y: 550.202}
+  m_AnchoredPosition: {x: -2, y: 291}
+  m_SizeDelta: {x: 585.5042, y: 424.6964}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1401373642
 GameObject:
@@ -12449,8 +12449,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.999975, y: 230.99998}
-  m_SizeDelta: {x: 758.5314, y: 550.202}
+  m_AnchoredPosition: {x: -1.9999771, y: 291}
+  m_SizeDelta: {x: 585.5042, y: 424.6964}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2002700735
 GameObject:

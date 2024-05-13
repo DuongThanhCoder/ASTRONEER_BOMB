@@ -880,8 +880,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 231}
-  m_SizeDelta: {x: 758.5314, y: 550.202}
+  m_AnchoredPosition: {x: 3, y: 294}
+  m_SizeDelta: {x: 590.6758, y: 428.4477}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &548210635
 GameObject:
@@ -1117,12 +1117,12 @@ MonoBehaviour:
   victoryText: {fileID: 768902523}
   panel: {fileID: 1714118177}
   PlayAgain: {fileID: 559142887}
-  map: {fileID: 0}
+  map: {fileID: 1064594494}
   bluewin: {fileID: 397116413}
   greenwin: {fileID: 807655922}
   redwin: {fileID: 1476803259}
   yellowwin: {fileID: 1607278712}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 904496915}
   chienthang: {fileID: 8300000, guid: f793fb63f66e5ac499da4ebd74d7f3f7, type: 3}
 --- !u!114 &649077756
 MonoBehaviour:
@@ -2957,8 +2957,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.999975, y: 230.99998}
-  m_SizeDelta: {x: 758.5314, y: 550.202}
+  m_AnchoredPosition: {x: 3.000023, y: 294}
+  m_SizeDelta: {x: 590.6758, y: 428.4477}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &904496914
 GameObject:
@@ -3958,8 +3958,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.999975, y: 230.99998}
-  m_SizeDelta: {x: 758.5314, y: 550.202}
+  m_AnchoredPosition: {x: 3.000023, y: 294}
+  m_SizeDelta: {x: 590.6758, y: 428.4477}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1580112139
 GameObject:
@@ -10124,8 +10124,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.999975, y: 230.99998}
-  m_SizeDelta: {x: 758.5314, y: 550.202}
+  m_AnchoredPosition: {x: 3.000023, y: 294}
+  m_SizeDelta: {x: 590.6758, y: 428.4477}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1714118177
 GameObject:

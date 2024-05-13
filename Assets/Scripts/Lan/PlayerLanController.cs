@@ -4,6 +4,7 @@ using System.Data.SqlTypes;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 using static Cinemachine.CinemachineFreeLook;
 
 public class PlayerLanController : NetworkBehaviour
@@ -43,6 +44,7 @@ public class PlayerLanController : NetworkBehaviour
     public GameObject nickname;
     HammerAttackLanController hammerAttack;
     GameObject robot;
+    CheckAndShowVictory checkwin;
 
     public void Awake(){
         if (SceneManager.GetActiveScene().name == "LobbyLan")
@@ -76,6 +78,7 @@ public class PlayerLanController : NetworkBehaviour
             gameObject.GetComponent<PlayerLanController>().enabled = false;
 
         }
+        checkwin = GameObject.Find("CheckVictoryLan(Clone)").GetComponent<CheckAndShowVictory>();
     }
 
     // Update is called once per frame
@@ -174,10 +177,7 @@ public class PlayerLanController : NetworkBehaviour
                     animator_body.SetTrigger("attack");
                     animator_overlay.SetTrigger("attack");
                     animator_vukhi.SetTrigger("attack");
-                    hammerAttack.kichhoatbua();
-                    if(IsClient&&!IsHost){
-                        goibuaServerRpc(huongnhin);
-                    }
+                    hammerAttack.requestHammerAttackServerRpc();
                     gameObject.GetComponent<BombLanController>().setbreaktime();
                     vukhi = 0;
                     StartCoroutine(capnhapvukhi(1f));
@@ -213,24 +213,14 @@ public class PlayerLanController : NetworkBehaviour
                 {
                     if (soluongdan > 1)
                     {
-                        if(IsClient&&!IsHost){
-                            goibanServerRpc(huongnhin);
-                        }
-                        if(IsHost){
-                            ban();
-                        }
+                        reqestBanServerRpc();
                         
                         animator_gunfire.SetTrigger("attack");
                         --soluongdan;
                     }
                     else
                     {
-                        if(IsClient&&!IsHost){
-                            goibanServerRpc(huongnhin);
-                        }
-                        if(IsHost){
-                            ban();
-                        }
+                        reqestBanServerRpc();
                         //animator_body.SetTrigger("attack");
                         //animator_overlay.SetTrigger("attack");
                         //animator_vukhi.SetTrigger("attack");
@@ -260,6 +250,7 @@ public class PlayerLanController : NetworkBehaviour
             {
                 huongnhin = vecmove;
                 huongnhin.Normalize();
+                syncHuongNhinServerRpc(huongnhin);
                 animator_body.SetFloat("LookX", huongnhin.x);
                 animator_body.SetFloat("LookY", huongnhin.y);
                 animator_overlay.SetFloat("LookX", huongnhin.x);
@@ -322,7 +313,12 @@ public class PlayerLanController : NetworkBehaviour
             StartCoroutine(choxoa());
             Destroy(gameObject, 3f);
             Destroy(robot);
+            
         }
+    }
+    private void OnDestroy()
+    {
+        checkwin.reqestgiamslServerRpc();
     }
     public void batkhien()
     {
@@ -358,9 +354,9 @@ public class PlayerLanController : NetworkBehaviour
     public void ban()
     {
         Vector2 vitri = gameObject.transform.position;
-        vitri.y -= 0.3f;
         if (Mathf.Abs(huongnhin.x) == Mathf.Abs(huongnhin.y))
         {
+            vitri.y -= 0.5f;
             GameObject Dan = Instantiate(dan, new Vector2(vitri.x, (vitri.y + huongnhin.y * 1.5f)), Quaternion.Euler(0, 0, 90f));
             Dan.GetComponent<NetworkObject>().Spawn();
             Dan.GetComponent<DanLanController>().themluc(new Vector2(0, huongnhin.y), 500f);
@@ -369,14 +365,24 @@ public class PlayerLanController : NetworkBehaviour
         {
             if (Mathf.Abs(huongnhin.y) > 0)
             {
-                GameObject Dan = Instantiate(dan, vitri + huongnhin * 1.5f, Quaternion.Euler(0, 0, 90f));
-                Dan.GetComponent<NetworkObject>().Spawn();
-                Dan.GetComponent<DanLanController>().themluc(huongnhin, 500f);
+                if (huongnhin.y > 0)
+                {
+                    GameObject Dan = Instantiate(dan, vitri + huongnhin + new Vector2(0f, -0.8f), Quaternion.Euler(0, 0, 90f));
+                    //Dan.GetComponent<NetworkObject>().Spawn();
+                    Dan.GetComponent<DanLanController>().themluc(huongnhin, 500f);
+                }
+                if (huongnhin.y < 0)
+                {
+                    GameObject Dan = Instantiate(dan, vitri + huongnhin + new Vector2(0f, -0.5f), Quaternion.Euler(0, 0, 90f));
+                    //Dan.GetComponent<NetworkObject>().Spawn();
+                    Dan.GetComponent<DanLanController>().themluc(huongnhin, 500f);
+                }
             }
             else
             {
+                vitri.y -= 0.5f;
                 GameObject Dan = Instantiate(dan, vitri + huongnhin * 1, Quaternion.Euler(0, 0, 0));
-                Dan.GetComponent<NetworkObject>().Spawn();
+                //Dan.GetComponent<NetworkObject>().Spawn();
                 Dan.GetComponent<DanLanController>().themluc(huongnhin, 500f);
             }
         }
@@ -407,25 +413,35 @@ public class PlayerLanController : NetworkBehaviour
     {
         spawnrobot(id);
     }
-    // [ClientRpc]
-    // public void goibanClientRpc()
-    // {
-    //     if(!IsHost){
-    //         ban();
-    //     }
-    // }
-    [ServerRpc]
-    public void goibanServerRpc(Vector2 huong)
+    [ServerRpc(RequireOwnership = false)]
+    public void reqestBanServerRpc()
     {
-        huongnhin = huong;
-        ban();
-        // gameObject.GetComponent<BombLanController>().setbreaktime();
+        goibanClientRpc();
     }
-    [ServerRpc]
-    public void goibuaServerRpc(Vector2 huongbua)
+    [ClientRpc]
+    public void goibanClientRpc()
     {
-        huongnhin = huongbua;
-        hammerAttack.kichhoatbua();
-        // gameObject.GetComponent<BombLanController>().setbreaktime();
+        ban();
+    }
+    [ClientRpc]
+    public void syncHuongNhinClientRpc(Vector2 huongnhinx)
+    {
+        huongnhin = huongnhinx;
+    }
+    [ServerRpc(RequireOwnership = false)]
+    public void syncHuongNhinServerRpc(Vector2 huongnhinx)
+    {
+        syncHuongNhinClientRpc(huongnhinx);
+        huongnhin = huongnhinx;
+    }
+    [ServerRpc(RequireOwnership = false)]
+    public void requestChangeHealthServerRpc(int luongmau)
+    {
+        callChangeHealthClientRpc(luongmau);
+    }
+    [ClientRpc]
+    public void callChangeHealthClientRpc(int luongmau)
+    {
+        thaydoimau(luongmau);
     }
 }

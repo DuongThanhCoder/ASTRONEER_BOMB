@@ -17,14 +17,9 @@ public class BoxLan : NetworkBehaviour
     }
     public void OnDestroy()
     {
-        if(IsClient && !IsHost) 
+        if(NetworkManager.IsHost)
         {
-            return;
-        }
-        Debug.Log("onDestroy" + IsHost);
-        Debug.Log("Huy box");
-        if(IsHost )
-        {
+            Debug.Log("Box in Host");
             if (items != null && Random.value < tilerotdo)
             {
                 int ran = Random.Range(0, items.Length);

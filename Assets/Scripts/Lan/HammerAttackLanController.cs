@@ -13,7 +13,6 @@ public class HammerAttackLanController : NetworkBehaviour
     public GameObject explosionprefab;
     public LayerMask ExploseMask;
     public BoxLan box;
-    Vector2 saisovuno = new Vector2(0, 0.6f);
     Vector2 huong;
     PlayerLanController player;
     void Start()
@@ -41,18 +40,15 @@ public class HammerAttackLanController : NetworkBehaviour
     public IEnumerator Explose(Vector2 vitrino, Vector2 huongno)
     {
         yield return new WaitForSeconds(0.5f);
-        for (int i = 1; i <= 10; ++i)
+        for (int i = 1; i <= 5; ++i)
         {
             GameObject explosion = Instantiate(explosionprefab, vitrino  + huongno * i, Quaternion.identity);
-            if(IsHost){
-                explosion.GetComponent<NetworkObject>().Spawn();
-            }
             Destroy(explosion, 0.5f);
             if (Physics2D.OverlapBox(vitrino - new Vector2(0,0.6f) + huongno * i, Vector2.one / 10f, 0f, ExploseMask))
             {
-                // xoabobox(vitrino - new Vector2(0, 0.6f) + huongno * i);
+                 xoabobox(vitrino - new Vector2(0, 0.6f) + huongno * i);
                 //xoabobox(vitrino - saisovuno);
-                goixoaboxClientRpc(vitrino - new Vector2(0, 0.6f) + huongno * i);
+                //goixoaboxClientRpc(vitrino - new Vector2(0, 0.6f) + huongno * i);
             }
         }
     }
@@ -76,5 +72,16 @@ public class HammerAttackLanController : NetworkBehaviour
     public void goixoaboxClientRpc(Vector2 vitri)
     {
         xoabobox(vitri);
+    }
+    [ServerRpc(RequireOwnership = false)]
+    public void requestHammerAttackServerRpc()
+    {
+        kichhoatbua();
+        callkichhoatbuaClientRpc();
+    }
+    [ClientRpc]
+    public void callkichhoatbuaClientRpc()
+    {
+        kichhoatbua();
     }
 }

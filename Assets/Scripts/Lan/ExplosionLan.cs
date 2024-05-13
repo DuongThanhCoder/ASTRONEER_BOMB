@@ -22,7 +22,12 @@ public class ExplosionLan : NetworkBehaviour
         if (collision.CompareTag("Player"))
         {
             //Debug.Log("notrung");
-            collision.gameObject.GetComponent<PlayerLanController>().thaydoimau(-2);  
+            //collision.gameObject.GetComponent<PlayerLanController>().thaydoimau(-2);
+            if (collision.gameObject.GetComponent<NetworkObject>().IsOwner)
+            {
+                collision.gameObject.GetComponent<PlayerLanController>().requestChangeHealthServerRpc(-2);
+            }
+
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class ReadyManager : NetworkBehaviour
 {
@@ -14,8 +15,9 @@ public class ReadyManager : NetworkBehaviour
     int numConnections;
     private UnityEngine.UI.Button buttonss;
     private UnityEngine.UI.Button buttonhss;
+    public Save save;
     public int soluongss = 0;
-
+    private NetworkVariable<int> slss = new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
     private void Awake()
     {
         GameObject canva = GameObject.Find("Canvas");
@@ -27,7 +29,8 @@ public class ReadyManager : NetworkBehaviour
             if (NetworkManager.LocalClientId == 0)
             {
                 Debug.Log("HostSS");
-                SanSangClientRpc();
+                //SanSangClientRpc();
+                ++soluongss;
             }
             else
             {
@@ -41,7 +44,8 @@ public class ReadyManager : NetworkBehaviour
             if (NetworkManager.LocalClientId == 0)
             {
                 Debug.Log("HostSS");
-                HuySanSangClientRpc();
+                //HuySanSangClientRpc();
+                --soluongss;
             }
             else
             {
@@ -52,15 +56,16 @@ public class ReadyManager : NetworkBehaviour
     }
     void Start()
     {
-        //if(IsHost)
+        //if (IsHost)
         //{
-        //    Dongbo(soluongss);
+        //    //Dongbo(soluongss);
         //}
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("So luong ss netvar " + slss.Value);
         if (NetworkManager.IsHost && IsOwner)
         {
             Debug.Log("so luong ss tren host " + soluongss + " id " + OwnerClientId + " Client id " + NetworkManager.LocalClientId);
@@ -78,13 +83,17 @@ public class ReadyManager : NetworkBehaviour
         }
         if (OwnerClientId == 0 && NetworkManager.IsHost)
         {
-            if(soluongss == NetworkManager.Singleton.ConnectedClientsList.Count && NetworkManager.Singleton.ConnectedClientsList.Count>=1)
+            if (soluongss == kiemtrasoluong() && kiemtrasoluong() >= 2)
             {
                 chuyensceneClientRpc();
                 //SceneManager.LoadScene(2);
-                
+
             }
         }
+    }
+    public int kiemtrasoluong()
+    {
+        return save.teamWithId.Count(item => item > -1);
     }
     [ClientRpc]
     private void chuyensceneClientRpc()
@@ -93,7 +102,7 @@ public class ReadyManager : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SanSangServerRpc()
+    public void SanSangServerRpc()
     {
         //if(OwnerClientId == 0)
         //{
@@ -101,10 +110,10 @@ public class ReadyManager : NetworkBehaviour
         //}
         //congsoluong();
         soluongss++;
-        Debug.Log("Client Request " + OwnerClientId);
+        Debug.Log("Server Request " + OwnerClientId);
     }
     [ServerRpc(RequireOwnership = false)]
-    private void HuySanSangServerRpc()
+    public void HuySanSangServerRpc()
     {
         //if (OwnerClientId == 0)
         //{
@@ -112,24 +121,6 @@ public class ReadyManager : NetworkBehaviour
         //}
         //trusoluong();
         soluongss--;
-        Debug.Log("Client Request " + OwnerClientId);
-    }
-    [ClientRpc ]
-    private void SanSangClientRpc()
-    {
-        //if (OwnerClientId >0)
-        //{
-        //    soluongss++;
-        //}
-        //congsoluong();
-        soluongss++;
-        Debug.Log("Client Request " + OwnerClientId);
-    }
-    [ClientRpc]
-    private void HuySanSangClientRpc()
-    {
-
-        soluongss--;
-        Debug.Log("Client Request " + OwnerClientId);
+        Debug.Log("Server Request " + OwnerClientId);
     }
 }

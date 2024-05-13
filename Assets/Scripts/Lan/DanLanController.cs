@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class DanLanController : NetworkBehaviour
 {
     public Tilemap tilemapphaduoc;
-    public BoxLan box;
+    public GameObject box;
     public LayerMask ExploseMask;
     public Vector2 huongbay;
     Rigidbody2D rigidbody;
@@ -33,9 +33,13 @@ public class DanLanController : NetworkBehaviour
         PlayerLanController player = collision.gameObject.GetComponent<PlayerLanController>();
         if (player != null)
         {
-            player.thaydoimau(-1);
-            if(IsHost){
-                trumauClientRpc(collision.gameObject.name);
+            //player.thaydoimau(-1);
+            //if(IsHost){
+            //    trumauClientRpc(collision.gameObject.name);
+            //}
+            if (collision.gameObject.GetComponent<NetworkObject>().IsOwner)
+            {
+                player.requestChangeHealthServerRpc(-1);
             }
             Destroy(gameObject);
             Debug.Log("Ban Trung Nguoi");
@@ -43,11 +47,11 @@ public class DanLanController : NetworkBehaviour
         }
         else
         {
-            if (Physics2D.OverlapBox(vitrivacham + huongbay/2f, Vector2.one / 10f, 0f, ExploseMask))
+            if (Physics2D.OverlapBox(vitrivacham + huongbay * 0.3f, Vector2.one / 10f, 0f, ExploseMask))
             {
                 Debug.Log("Ban Trung box");
-                // xoabobox(vitrivacham + huongbay / 2);
-                goixoaboxClientRpc(vitrivacham + huongbay / 2);
+                 xoabobox(vitrivacham + huongbay*0.3f);
+                //goixoaboxClientRpc(vitrivacham + huongbay / 2);
                 Destroy(gameObject);
                 return;
             }

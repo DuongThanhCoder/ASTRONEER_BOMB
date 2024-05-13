@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 1736434543397066056}
   - component: {fileID: 2030996557076764509}
   - component: {fileID: 5572634576401656024}
+  - component: {fileID: 7559199586042048502}
   m_Layer: 0
   m_Name: firerifle
   m_TagString: Untagged
@@ -234,6 +235,36 @@ MonoBehaviour:
     TriggerNameHash: 1203776827
     TransitionIndex: 0
   m_Animator: {fileID: 1736434543397066056}
+--- !u!114 &7559199586042048502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999682874227915014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 1
+  Interpolate: 0
+  SlerpPosition: 0
 --- !u!1 &2129106276857750169
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3463933682
+  GlobalObjectIdHash: 308350605
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1236,6 +1267,7 @@ GameObject:
   - component: {fileID: 7792310316178286981}
   - component: {fileID: 5752405625801207162}
   - component: {fileID: 1359065802047816581}
+  - component: {fileID: 7276867062192501489}
   m_Layer: 0
   m_Name: vukhi
   m_TagString: Untagged
@@ -1359,6 +1391,36 @@ MonoBehaviour:
     TriggerNameHash: 1203776827
     TransitionIndex: 1
   m_Animator: {fileID: 7792310316178286981}
+--- !u!114 &7276867062192501489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6824745244033900492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 1
+  Interpolate: 0
+  SlerpPosition: 0
 --- !u!1 &8404637078343320365
 GameObject:
   m_ObjectHideFlags: 0
